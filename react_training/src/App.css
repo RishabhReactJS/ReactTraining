@@ -1,0 +1,30 @@
+*{
+  /* text-align: center; */
+ 
+}
+
+.App {
+  /* text-align: center; */
+  width: 50%;
+  margin: auto;
+}
+
+
+input[type=text],[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.padding-top{
+  padding-top: 15px;
+}
+
+.heading{
+  font-size: large;
+}
+
+.sub-heading{
+  font-size: medium;
+}
