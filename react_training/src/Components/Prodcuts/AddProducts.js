@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import SyncedComponent from '../Hooks&LifeCycles/DerivedState';
-import DataFetchingComponent from '../Hooks&LifeCycles/DataFetchingComponent'
-class ClassBased extends Component {
+
+class AddProducts extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
+    this.inputName = React.createRef();
+    this.inputDesc = React.createRef();
     this.inputNumber = React.createRef();
   }
 
-  state = { name: "Rishabh", age: 12 };
+//   state = { name: "Honor8", description: "latest phone", price: 12 };
 
   componentDidMount() {
     console.log("in componentDidMount");
@@ -42,8 +42,13 @@ class ClassBased extends Component {
   }
 
   handleSubmit(event){
-    alert('A name was submitted: ' + this.input.current.value);
-    this.setState((prevState) => {return {...prevState, name: this.input.current.value}});
+    // alert('A name was submitted: ' + this.input.current.value);
+    // this.setState((prevState) => {return {...prevState, name: this.input.current.value}});
+    this.props.updateProduct({
+        name: this.inputName.current.value,
+        description: this.inputDesc.current.value,
+        price: this.inputNumber.current.value
+    })
     event.preventDefault();
   }
 
@@ -56,26 +61,17 @@ class ClassBased extends Component {
     console.log('in render');
     return (
       <div className="App">
-          {/* <ChatWindow messages={message}/> */}
-        <div className='heading padding-top'>Class Component</div>
-        <div className='padding-top'>Controlled Component</div>
-        <label htmlFor="fname">Name</label>
-        <input type={"text"} id="fname" defaultValue={this.state.name}  onChange={this.handleChange.bind(this)}/>
-        <button onClick={this.handleControlledSubmit}>Submit</button>
-        <div>{this.state.name}</div>
-        
-        <div className='padding-top'>Uncontrolled Component</div>
+        <div className='padding-top'>Add Products</div>
         <form onSubmit={this.handleSubmit}>
             <label>Name</label>
-            <input type={"text"} ref={this.input} defaultValue={this.state.name} />
-            <input type={"nummber"} ref={this.inputNumber} defaultValue={this.state.age} />
+            <input type={"text"} ref={this.inputName} defaultValue={"Honor8"} />
+            <input type={"text"} ref={this.inputDesc} defaultValue={"Latest 5G phone"} />
+            <input type={"nummber"} ref={this.inputNumber} defaultValue={49} />
             <input type={"submit"}  value="Submit" />
         </form>
-        {/* <SyncedComponent externalData={this.state.name}/> */}
-        {/* <DataFetchingComponent /> */}
       </div>
     );
   }
 }
 
-export default ClassBased;
+export default AddProducts;

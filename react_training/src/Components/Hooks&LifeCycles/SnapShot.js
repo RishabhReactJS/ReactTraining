@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, memo } from 'react';
 
-export default class ChatWindow extends Component {
+class ChatWindow extends Component {
   constructor(props) {
     super(props);
     this.messagesEndRef = React.createRef();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('in componentDidUpdate Child')
     if (snapshot !== null) {
       this.scrollToBottom();
     }
@@ -28,6 +29,7 @@ export default class ChatWindow extends Component {
   }
 
   render() {
+    console.log('in render Child')
     return (
         <>
         <div>Messages</div>
@@ -45,3 +47,5 @@ export default class ChatWindow extends Component {
     );
   }
 }
+
+export const MemoChatWin = memo(ChatWindow)
